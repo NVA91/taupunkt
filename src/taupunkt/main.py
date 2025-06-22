@@ -23,6 +23,11 @@ import vga1_8x8 as font
 I2C_SDA = 0
 I2C_SCL = 1
 
+# Sensoradressen
+AHT20_ADDR = 0x38
+BMP280_ADDR = 0x76
+SHT41_ADDR = 0x44
+
 
 # LED Pins
 LED_ROT = 13
@@ -40,8 +45,8 @@ SPI_MOSI = 19
 
 
 # LCD Maße
-TFT_WIDTH = 240
-TFT_HEIGHT = 240
+TFT_WIDTH = 172
+TFT_HEIGHT = 320
 
 
 # Prüfintervall (Sekunden)
@@ -79,9 +84,9 @@ i2c = I2C(0, scl=Pin(I2C_SCL), sda=Pin(I2C_SDA), freq=100000)
 
 
 # Sensoren
-sensor_innen = sht4x.SHT4x(i2c)
-sensor_aussen = ahtx0.AHT20(i2c)
-sensor_druck = bmp280.BMP280(i2c)
+sensor_innen = sht4x.SHT4x(i2c, address=SHT41_ADDR)
+sensor_aussen = ahtx0.AHT20(i2c, address=AHT20_ADDR)
+sensor_druck = bmp280.BMP280(i2c, addr=BMP280_ADDR)
 
 
 # LEDs
@@ -97,7 +102,7 @@ tft = st7789.ST7789(
     reset=Pin(LCD_RST, Pin.OUT),
     dc=Pin(LCD_DC, Pin.OUT),
     cs=Pin(LCD_CS, Pin.OUT),
-    rotation=0 # Anpassen je nach Display-Ausrichtung
+    rotation=3  # 270° Rotation für Waveshare 1.47" Display
 )
 tft.init()
 Pin(LCD_BL, Pin.OUT).on()
