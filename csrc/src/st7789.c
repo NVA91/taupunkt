@@ -122,6 +122,13 @@ st7789_rotation_t ORIENTATIONS_170x320[4] = {
     {0xa0, 320, 170, 0, 35}
 };
 
+st7789_rotation_t ORIENTATIONS_172x320[4] = {
+    {0x00, 172, 320, 34, 0},
+    {0x60, 320, 172, 0, 34},
+    {0xc0, 172, 320, 34, 0},
+    {0xa0, 320, 172, 0, 34}
+};
+
 st7789_rotation_t ORIENTATIONS_240x240[4] = {
     {0x00, 240, 240, 0, 0},
     {0x60, 240, 240, 0, 0},
@@ -1109,6 +1116,8 @@ static void set_rotation(st7789_ST7789_obj_t *self) {
             rotations = ORIENTATIONS_240x320;
         } else if (self->display_width == 170 && self->display_height == 320) {
             rotations = ORIENTATIONS_170x320;
+        } else if (self->display_width == 172 && self->display_height == 320) {
+            rotations = ORIENTATIONS_172x320;
         } else if (self->display_width == 240 && self->display_height == 240) {
             rotations = ORIENTATIONS_240x240;
         } else if (self->display_width == 135 && self->display_height == 240) {
