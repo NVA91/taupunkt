@@ -12,5 +12,21 @@ Simple dew-point display project for Raspberry Pi Pico 2.
   - SHT41 indoor humidity/temperature (0x44)
 
 ## Usage
-To run on the Pico, upload the `micropython` folder to the device and reboot.
-The scripts contain all required defaults for the hardware listed above.
+
+Install [mpremote](https://pypi.org/project/mpremote/) and run:
+
+```bash
+python micropython/tools/upload_to_pico.py
+```
+
+This copies all firmware files to the Pico.  Reboot the device to start the
+application.  All pin assignments and thresholds can be adjusted in
+`micropython/config.py`.
+
+## Documentation
+
+Full documentation is available in [`docs/index.md`](docs/index.md).
+
+## Changelog
+
+See [`CHANGELOG.md`](CHANGELOG.md) for a history of notable changes.
